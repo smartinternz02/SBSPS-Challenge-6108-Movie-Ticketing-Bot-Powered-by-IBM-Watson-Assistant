@@ -1,0 +1,730 @@
+{
+  "intents": [
+    {
+      "intent": "greetings",
+      "examples": [
+        {
+          "text": "hello"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "ok"
+        },
+        {
+          "text": "okay"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "otp",
+      "examples": [
+        {
+          "text": "abc123"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "seats",
+      "examples": [
+        {
+          "text": "1"
+        },
+        {
+          "text": "2"
+        },
+        {
+          "text": "3"
+        },
+        {
+          "text": "4"
+        },
+        {
+          "text": "5"
+        },
+        {
+          "text": "6"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "thankyou",
+      "examples": [
+        {
+          "text": "thanks"
+        },
+        {
+          "text": "thank you"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "time",
+      "examples": [
+        {
+          "text": "11.30 AM"
+        },
+        {
+          "text": "11.30AM"
+        },
+        {
+          "text": "3 PM"
+        },
+        {
+          "text": "3PM"
+        },
+        {
+          "text": "8 PM"
+        },
+        {
+          "text": "8PM"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "movie",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Bell Bottom",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "No Time To Die",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Roohi",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Saina",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "The Father",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Venom Let There Be Carnage",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "region",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Bangalore",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Hyderabad",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Mumbai",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    },
+    "from-sample": true
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_1_1634494597100",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "OTP is sent to the mobile number. Please enter the OTP(abc123):"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@sys-number",
+      "dialog_node": "node_10_1634494036429",
+      "previous_sibling": "node_7_1634493937854"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "source": "https://pbs.twimg.com/profile_images/1334415883117101057/YZPzjgVL_400x400.jpg",
+            "response_type": "image"
+          },
+          {
+            "title": "Select Region",
+            "options": [
+              {
+                "label": "Hyderabad",
+                "value": {
+                  "input": {
+                    "text": "Hyderabad"
+                  }
+                }
+              },
+              {
+                "label": "Mumbai",
+                "value": {
+                  "input": {
+                    "text": "Mumbai"
+                  }
+                }
+              },
+              {
+                "label": "Bangalore",
+                "value": {
+                  "input": {
+                    "text": "Bangalore"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "@movie:(Venom Let There Be Carnage)",
+      "dialog_node": "node_1_1634492200850",
+      "previous_sibling": "node_5_1634492195697"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "source": "https://image.shutterstock.com/image-vector/emoji-emoticon-medical-mask-over-260nw-1673061742.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#thankyou",
+      "dialog_node": "node_1_1634494597100",
+      "previous_sibling": "node_4_1634494251893"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "source": "https://i2.wp.com/www.socialnews.xyz/wp-content/uploads/2020/01/28/Akshay-Kumar-s-Bell-Bottom-movie-New-Release-Date-Poster-.jpg?quality=90&zoom=1&ssl=1",
+            "response_type": "image"
+          },
+          {
+            "title": "Select Region",
+            "options": [
+              {
+                "label": "Hyderabad",
+                "value": {
+                  "input": {
+                    "text": "Hyderabad"
+                  }
+                }
+              },
+              {
+                "label": "Mumbai",
+                "value": {
+                  "input": {
+                    "text": "Mumbai"
+                  }
+                }
+              },
+              {
+                "label": "Bangalore",
+                "value": {
+                  "input": {
+                    "text": "Bangalore"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "@movie:(Bell Bottom)",
+      "dialog_node": "node_2_1634491459338",
+      "previous_sibling": "node_3_1634489333053"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCpFN4zH6bq14w7BImX63uvIQBHFzk0h3Cmg&usqp=CAU",
+            "response_type": "image"
+          },
+          {
+            "title": "Select Region",
+            "options": [
+              {
+                "label": "Hyderabad",
+                "value": {
+                  "input": {
+                    "text": "Hyderabad"
+                  }
+                }
+              },
+              {
+                "label": "Mumbai",
+                "value": {
+                  "input": {
+                    "text": "Mumbai"
+                  }
+                }
+              },
+              {
+                "label": "Bangalore",
+                "value": {
+                  "input": {
+                    "text": "Bangalore"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "@movie:(No Time To Die)",
+      "dialog_node": "node_3_1634489333053",
+      "previous_sibling": "node_6_1634487752079"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "source": "https://m.media-amazon.com/images/M/MV5BODFjN2M4MDktMjk5Ni00NzA0LWE2MzAtNzhiNDMwYWJmNDczXkEyXkFqcGdeQXVyMTI1NDAzMzM0._V1_.jpg",
+            "response_type": "image"
+          },
+          {
+            "title": "Select Region",
+            "options": [
+              {
+                "label": "Hyderabad",
+                "value": {
+                  "input": {
+                    "text": "Hyderabad"
+                  }
+                }
+              },
+              {
+                "label": "Mumbai",
+                "value": {
+                  "input": {
+                    "text": "Mumbai"
+                  }
+                }
+              },
+              {
+                "label": "Bangalore",
+                "value": {
+                  "input": {
+                    "text": "Bangalore"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "@movie:Saina",
+      "dialog_node": "node_4_1634492023670",
+      "previous_sibling": "node_8_1634491858622"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Tickets available at PVR cinemas at 11.30AM ,3PM and 8PM, Enter time:"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@sys-date",
+      "dialog_node": "node_4_1634493416147",
+      "previous_sibling": "node_7_1634493330508"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ticket details are sent to your mobile number . Complete  the payment and book the Slot. Thank you for using our service."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#otp",
+      "dialog_node": "node_4_1634494251893",
+      "previous_sibling": "node_10_1634494036429"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "source": "https://m.media-amazon.com/images/M/MV5BZWQ3MjBjN2MtMjIxYS00MjBlLWFmYTktN2RlZmVkMWUzYTYwXkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_.jpg",
+            "response_type": "image"
+          },
+          {
+            "title": "Select Region",
+            "options": [
+              {
+                "label": "Hyderabad",
+                "value": {
+                  "input": {
+                    "text": "Hyderabad"
+                  }
+                }
+              },
+              {
+                "label": "Mumbai",
+                "value": {
+                  "input": {
+                    "text": "Mumbai"
+                  }
+                }
+              },
+              {
+                "label": "Bangalore",
+                "value": {
+                  "input": {
+                    "text": "Bangalore"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "@movie:(The Father)",
+      "dialog_node": "node_5_1634492195697",
+      "previous_sibling": "node_4_1634492023670"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "title": "Choose any movie from the list",
+            "options": [
+              {
+                "label": "No Time To Die",
+                "value": {
+                  "input": {
+                    "text": "No Time To Die"
+                  }
+                }
+              },
+              {
+                "label": "The Father",
+                "value": {
+                  "input": {
+                    "text": "The Father"
+                  }
+                }
+              },
+              {
+                "label": "Bell Bottom",
+                "value": {
+                  "input": {
+                    "text": "Bell Bottom"
+                  }
+                }
+              },
+              {
+                "label": "Saina",
+                "value": {
+                  "input": {
+                    "text": "Saina"
+                  }
+                }
+              },
+              {
+                "label": "Roohi",
+                "value": {
+                  "input": {
+                    "text": "Roohi"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#greetings",
+      "dialog_node": "node_6_1634487752079",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Enter the date you want to watch:"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#seats",
+      "dialog_node": "node_7_1634493330508",
+      "previous_sibling": "node_9_1634492876117"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Okay. Enter the Mobile Number:"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#time",
+      "dialog_node": "node_7_1634493937854",
+      "previous_sibling": "node_4_1634493416147"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "source": "https://static.toiimg.com/thumb/msid-68626862,width-219,height-317,imgsize-51844/68626862.jpg",
+            "response_type": "image"
+          },
+          {
+            "title": "Select Region",
+            "options": [
+              {
+                "label": "Hyderabad",
+                "value": {
+                  "input": {
+                    "text": "Hyderabad"
+                  }
+                }
+              },
+              {
+                "label": "Mumbai",
+                "value": {
+                  "input": {
+                    "text": "Mumbai"
+                  }
+                }
+              },
+              {
+                "label": "Bangalore",
+                "value": {
+                  "input": {
+                    "text": "Bangalore"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "@movie:Roohi",
+      "dialog_node": "node_8_1634491858622",
+      "previous_sibling": "node_2_1634491459338"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "title": "Select the number of seats needed:",
+            "options": [
+              {
+                "label": "1",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "2",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "3",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              },
+              {
+                "label": "4",
+                "value": {
+                  "input": {
+                    "text": "4"
+                  }
+                }
+              },
+              {
+                "label": "5",
+                "value": {
+                  "input": {
+                    "text": "5"
+                  }
+                }
+              },
+              {
+                "label": "6",
+                "value": {
+                  "input": {
+                    "text": "6"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "@region",
+      "dialog_node": "node_9_1634492876117",
+      "previous_sibling": "node_1_1634492200850"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. I am here to help you to book a ticket?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "mtbooking",
+  "language": "en",
+  "description": ""
+}
