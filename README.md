@@ -3,7 +3,7 @@
   
   <h2> Chat Bot Preview LINK :- </h2>   https://web-chat.global.assistant.watson.cloud.ibm.com/preview.html?region=eu-gb&integrationID=1b71a886-a6df-4d8e-b579-53c26702ef3c&serviceInstanceID=8aa61aa7-06e4-4aa3-b7dc-32b5c0045cf7
   
-  <h2>VIDEO DEMONSTRATION LINK:-</h2>  https://drive.google.com/file/d/1P4r2323B5xKZoI0oIIofx1VxRPNSqUc_/view?usp=sharing
+  <h2>VIDEO DEMONSTRATION LINK:-</h2> https://drive.google.com/file/d/1P4r2323B5xKZoI0oIIofx1VxRPNSqUc_/view?usp=sharing
 
 <h2>Watson Assistant</h2>
 
